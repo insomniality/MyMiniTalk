@@ -6,18 +6,15 @@
 /*   By: mikarzum <mikarzum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:26:50 by mikarzum          #+#    #+#             */
-/*   Updated: 2022/09/30 12:55:04 by mikarzum         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:32:40 by mikarzum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.c"
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
+#include "ft_printf/ft_printf.h"
 
-int	vk;
+int	g_vk;
 
-int	pW(int n, int pw)
+int	pwr(int n, int pw)
 {
 	int	x;
 
@@ -32,75 +29,36 @@ int	pW(int n, int pw)
 	return (x);
 }
 
-char	*hello(void)
+void	one(void)
 {
-	static char barev[1000000];
-	return barev;
+	g_vk = 0;
 }
 
-void one(int signum)
+void	two(void) //stugi oka te che?
 {
-	//write(1, "0", 1);
-	//fin += ((int)o8[i] - 48) * pw(2, 7 - i);
-	//hello()[10] = 'a';
-	vk = 0;
+	g_vk = 1;
 }
 
-void two(int signum)
+int	main(void)
 {
-	//write(1, "1", 1);
-	vk = 1;
-}
+	struct sigaction	sa;
+	struct sigaction	sb;
+	int					fin;
+	int					i;
 
-int main()
-{
-	char	o8[9];
-	int		pid;
-	int		fin;
-	int		i;
-
-
-	pid = getpid();
-	ft_printf("%d\n", pid);
-	
-	i = 0;
-	fin = 0;
-	o8[8] = '\0';
-	struct sigaction sa; //check why?
-	sa.sa_flags = SA_SIGINFO; //check why?
+	ft_printf("%d\n", (int)getpid() + (i = 0) + (fin = 0));
+	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&(sa.sa_mask));
-	sa.sa_handler = &one; //check why?
-	sigaction(SIGUSR1, &sa, NULL); //check why?
-
-	struct sigaction sb; //check why?
+	sa.sa_handler = &one;
+	sigaction(SIGUSR1, &sa, NULL);
 	sb.sa_flags = SA_SIGINFO;
-	sigemptyset(&(sb.sa_mask)); //check why?
-	sb.sa_handler = &two; //check why?	
+	sigemptyset(&(sb.sa_mask));
+	sb.sa_handler = &two;
 	sigaction(SIGUSR2, &sb, NULL);
-
-	//ft_printf("%s\n", str);
-	//while (1)
-	//	pause();
-	while(1) 
+	while (1)
 	{
 		pause();
-		//if (i == 7)
-		//{
-		//	fin = 0;
-		//	i = 0;
-		//	while (i < 8)
-		//	{
-		//		fin += vk * pW(2, 7 - i);
-		//		i++;
-		//	}
-		//	write(1, &fin, 1);
-		//	i = 0;
-		//	fin = 0;
-		//}
-
-		fin += vk * pW(2, 7 - i);
-		//printf( "i is %d AND fin is%d\n", i, fin);
-		i++;
+		fin += g_vk * pwr(2, 7 - i++);
 		if (i == 8)
 		{
 			write(1, &fin, 1);

@@ -6,12 +6,11 @@
 /*   By: mikarzum <mikarzum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 19:57:13 by mikarzum          #+#    #+#             */
-/*   Updated: 2022/09/24 20:54:57 by mikarzum         ###   ########.fr       */
+/*   Updated: 2022/10/01 20:45:42 by mikarzum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
 int	spaces(const char *str)
 {
