@@ -6,7 +6,7 @@
 /*   By: mikarzum <mikarzum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:26:50 by mikarzum          #+#    #+#             */
-/*   Updated: 2022/10/01 21:32:40 by mikarzum         ###   ########.fr       */
+/*   Updated: 2022/10/03 22:21:39 by mikarzum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ int	pwr(int n, int pw)
 	return (x);
 }
 
-void	one(void)
+void	one(int i)
 {
+	(void) i;
 	g_vk = 0;
 }
 
-void	two(void) //stugi oka te che?
+void	two(int i)
 {
+	(void) i;
 	g_vk = 1;
 }
 

@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc -Wall -Wextra server.c ft_printf/libftprintf.a -o server
-gcc -Wall -Wextra client.c ft_printf/libftprintf.a -o client
+gcc -Wall -Wextra -Werror server.c ft_printf/libftprintf.a -o server
+gcc -Wall -Wextra -Werror client.c ft_printf/libftprintf.a -o client
